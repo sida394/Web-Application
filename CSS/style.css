@@ -22,6 +22,14 @@ body
     border: 2px solid black;
     
 }
+#image_header
+{
+      width: 50vw;
+    height: auto;
+    max-width: none;
+    max-height: 100vh;
+    object-fit: contain;
+}
 .main
 {
     padding:  0px 0px 0px 23px;
