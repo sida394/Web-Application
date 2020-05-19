@@ -1,3 +1,14 @@
+var title;
+ document.querySelector('#form_input').style.display ="none";
+function newTitle(){
+    title = document.querySelector('#new-title');
+    title.style.display ="none";
+    document.querySelector('#sendTitle').style.display = "none";
+    console.log( "document.querySelector('#form_input').style.display");
+ document.querySelector('#form_input').style.display ="block";
+    return title;
+}
+
 function dataForm(){
     
 var name = document.querySelector('#name');
@@ -14,21 +25,15 @@ var data = [{name: nameValue,
              phoneNumber: phoneNumberValue}];
     console.log(data);
     return data;
-    return name;
-    return lastName;
-    return mail;
-    return phoneNumber;
-    
-    
    
 }
 
 
-function csv(data){
+function csv(title,data){
     
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const csvWriter = createCsvWriter({
-  path: 'form.csv',
+  path: title.value +".csv",
   header: [
       {id:'name',title:'Name'},
     {id:'lastName',title:'Last Name'},
@@ -43,18 +48,19 @@ const csvWriter = createCsvWriter({
 }
 
 
-function formCleaning(name, lastName, mail, phoneNumber){
+function formCleaning(title,name, lastName, mail, phoneNumber){
     
+title.value="";    
 name.value= "";
 lastName.value = "";
 mail.value = "";
 phoneNumber.value = "";
     
 }
-function myFunctions(){
-    
+function myFunctions(t){
+    titleForApp = newTitle();
    datas = dataForm();
-    csv(datas);
+    csv(title,datas);
     formCleaning(datas);
     
     
