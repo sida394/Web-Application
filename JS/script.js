@@ -1,3 +1,8 @@
+const sendToBackEnd =  (email)=>{
+  const { ipcRenderer } = require('electron');
+  ipcRenderer.send('asynchronous-message',[email]);
+}
+
 var title;
  document.querySelector('#form_input').style.display ="none";
 function newTitle(){
@@ -17,6 +22,7 @@ var lastName = document.querySelector('#lastName');
 var lastNameValue = lastName.value;
 var mail = document.querySelector('#mail');
 var mailValue = mail.value;
+sendToBackEnd(mailValue);
 var  phoneNumber = document.querySelector('#phoneNumber');
 var phoneNumberValue = phoneNumber.value;
 var data = [{name: nameValue,
@@ -35,7 +41,7 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const csvWriter = createCsvWriter({
   path: title.value +".csv",
   header: [
-      {id:'name',title:'Name'},
+    {id:'name',title:'Name'},
     {id:'lastName',title:'Last Name'},
     {id:'mail',title:'Mail'},
     {id:'phoneNumber',title:'Phone Number'}
