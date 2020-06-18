@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <article class="main">
+            <header class="header">
+                <img id="image_header" src="images/aiesec-logo-white-blue.svg" alt="home-image">
+            </header>
+            <div id="form">
+                <div id="title">
+                    <div>
+                        <label for="name"></label>
+                        <input id="new-title" type="text" name="title" placeholder="Enter the title of the offline please" required>
+                    </div>
+                    <div>
+                        <label for="name"></label>
+                        <input id="sendTitle" type="submit" onclick="newTitle()" name="submit">
+                    </div>
+                </div>
+                <div id="form_input">
+                    <div>
+                        <label for="name">Name:</label>
+                        <input id="name" type="text" name="name" placeholder="your name" required>
+                    </div>
+                    <div>
+                        <label for="name">Last Name:</label>
+                        <input id="lastName" type="text" name="lastName" placeholder="your last name" required>
+                    </div>
+                    <div>
+                        <label for="name">Email:</label>
+                        <input id="mail" type="text" name="email" placeholder="your email" required>
+                    </div>
+                    <div>
+                        <label for="name">Number:</label>
+                        <input id="phoneNumber" type="number" name="PhoneNumber" placeholder="Phone number" required>
+                    </div>
+                    <div>
+                        <label for="name"></label>
+                        <input id="send" type="submit" onclick="myFunctions()" name="submit">
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="alert alert-success" id="goodInfos" role="alert" style="text-align: center;"></div>
+                            <div class="alert alert-danger" id="badInfos" role="alert" style="text-align: center;"></div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-lg btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+
+    <!-- normal script imports etc  -->
+    <script src="JS/jquery.min.js"></script>
+    <script src="JS/bootstrap.min.js"></script>
+    <!-- Insert this line after script imports -->
+    <script>
+        if (window.module) module = window.module;
+    </script>
+    <script src="JS/script.js"></script>
+</body>
+
+</html>
