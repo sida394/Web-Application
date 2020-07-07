@@ -7,10 +7,12 @@ async function dialog() {
     }).catch(err => {
         console.log(err)
     });
-    return pathcsv ;
+    return pathcsv;
 }
+
 var titleP;
 var title;
+var entries = [];
 document.querySelector('#form_input').style.display = "none";
 
 async function newTitle() {
@@ -21,7 +23,7 @@ async function newTitle() {
         $('#myModal').modal('show');
     } else {
         titleP = await dialog();
-        titleP = titleP+"\\"+title.value;
+        titleP = titleP + "\\" + title.value;
 
         title.style.display = "none";
         document.querySelector('#sendTitle').style.display = "none";
@@ -69,6 +71,15 @@ function dataForm() {
                         mail: mailValue,
                         phoneNumber: phoneNumberValue
                     }];
+                    entries.push(
+                        {
+                            name: nameValue,
+                            lastName: lastNameValue,
+                            mail: mailValue,
+                            phoneNumber: phoneNumberValue
+                        }
+                    )
+                    console.log(entries);
                     return data;
                 }
             }
@@ -85,7 +96,7 @@ async function csv(title, data) {
     const createCsvWriter = require('csv-writer').createObjectCsvWriter;
     const csvWriter = createCsvWriter({
         path: title + '.csv',
-        append:true,
+        append: true,
         header: [
             { id: 'name', title: 'Name' },
             { id: 'lastName', title: 'Last Name' },
@@ -95,7 +106,7 @@ async function csv(title, data) {
     });
     let writed = false;
     await csvWriter.writeRecords(data).then(() => {
-        writed =  true;
+        writed = true;
     });
     return writed;
 }
@@ -114,11 +125,11 @@ function myFunctions(t) {
     } else {
         $('#badInfos').css('display', 'none');
         $('#goodInfos').css('display', 'none');
-        csv(titleP, datas).then(()=>{
+        csv(titleP, datas).then(() => {
             $('#goodInfos').html('<h3>save successfully</h3>');
             $('#goodInfos').css('display', 'block');
             $('#myModal').modal('show');
-        }).catch(() =>{
+        }).catch(() => {
             $('#badInfos').html('<h3>Save failed</h3>');
             $('#badInfos').css('display', 'block');
             $('#myModal').modal('show');
@@ -132,3 +143,25 @@ function myFunctions(t) {
 
 $('#badInfos').css('display', 'none');
 $('#goodInfos').css('display', 'none');
+
+function toExcel() {
+    /* Saves every entry in the data global variable into a sheet */
+    var xl = require('excel4node');
+    var wb = new xl.Workbook;
+    var ws = wb.addWorksheet('Sheet1');
+
+    ws.cell(1, 1).string('Name');
+    ws.cell(1, 2).string('Last name');
+    ws.cell(1, 3).string('Mail');
+    ws.cell(1, 4).string('Phone number');
+
+
+    for (let currentLine = 2; currentLine-2 < entries.length; currentLine++) {
+        console.log(entries);
+        ws.cell(currentLine, 1).string(entries[currentLine-2].name);
+        ws.cell(currentLine, 2).string(entries[currentLine-2].lastName);
+        ws.cell(currentLine, 3).string(entries[currentLine-2].mail);
+        ws.cell(currentLine, 4).string(entries[currentLine-2].phoneNumber);
+    }
+    wb.write(titleP + '.xlsx');
+}
