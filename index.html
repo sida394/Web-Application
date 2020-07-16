@@ -10,43 +10,42 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container w-50 shadow-lg px-0 pb-3 mt-5">
         <article class="main">
-            <header class="header">
-                <img id="image_header" src="images/aiesec-logo-white-blue.svg" alt="home-image">
+            <header class="header bg-primary p-3 mb-3">
+                <img class="img-fluid mx-auto" id="image_header" src="images/aiesec-logo-white-blue.svg" alt="home-image">
             </header>
-            <div id="form">
+            <div id="form p-3">
                 <div id="title">
                     <div>
-                        <label for="name"></label>
-                        <input id="new-title" type="text" name="title" placeholder="Enter the title of the offline please" required>
+                        <input class="mx-auto form-control mb-2 w-75" id="new-title" type="text" name="title" placeholder="Enter the title of the offline please" required>
                     </div>
-                    <div>
-                        <label for="name"></label>
-                        <input id="sendTitle" type="submit" onclick="newTitle()" name="submit">
+                    <div class="row justify-content-center">
+                        <button class="mx-auto btn btn-primary" id="sendTitle" type="submit" onclick="newTitle()" name="submit">Validate</button>
                     </div>
                 </div>
                 <div id="form_input">
-                    <div>
-                        <label for="name">Name:</label>
-                        <input id="name" type="text" name="name" placeholder="your name" required>
+                    <div class="row mx-3 mb-2">
+                        <label class="col-3" for="name">Name:</label>
+                        <input class="col-9 form-control" id="name" type="text" name="name" placeholder="your name" required>
                     </div>
-                    <div>
-                        <label for="name">Last Name:</label>
-                        <input id="lastName" type="text" name="lastName" placeholder="your last name" required>
+                    <div class="row mx-3 mb-2">
+                        <label class="col-3" for="name">Last Name:</label>
+                        <input class="col-9 form-control" id="lastName" type="text" name="lastName" placeholder="your last name" required>
                     </div>
-                    <div>
-                        <label for="name">Email:</label>
-                        <input id="mail" type="text" name="email" placeholder="your email" required>
+                    <div class="row mx-3 mb-2">
+                        <label class="col-3" for="name">Email:</label>
+                        <input class="col-9 form-control" id="mail" type="text" name="email" placeholder="your email" required>
                     </div>
-                    <div>
-                        <label for="name">Number:</label>
-                        <input id="phoneNumber" type="number" name="PhoneNumber" placeholder="Phone number" required>
+                    <div class="row mx-3 mb-2">
+                        <label class="col-3" for="name">Number:</label>
+                        <input class="col-9 form-control" id="phoneNumber" type="number" name="PhoneNumber" placeholder="Phone number" required>
                     </div>
-                    <div>
-                        <label for="name"></label>
-                        <input id="send" type="submit" onclick="myFunctions()" name="submit">
-                        <button type="submit" onclick="toExcel()">Export to Excel</button>
+                    <div class="row mx-3 mb-2">
+                        <div class="offset-3">
+                            <button class="btn btn-primary" id="send" type="submit" onclick="myFunctions()" name="submit">Submit</button>
+                            <button class="btn btn-dark" type="submit" onclick="toExcel()">Export to Excel</button>
+                        </div>
                     </div>
                 </div>
             </div>
