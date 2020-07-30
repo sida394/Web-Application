@@ -3,15 +3,20 @@
   "version": "0.0.1",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . form --overwrite --out=dist --asar=true --icon=icon.ico --prune=true "
   },
   "devDependencies": {
-    "electron": "^8.2.1",
+    "electron": "^9.1.2",
+    "electron-packager": "^15.0.0",
     "excel4node": "^1.7.2"
   },
   "dependencies": {
+    "asar": "^3.0.3",
     "csv": "^5.3.2",
     "csv-writer": "^1.6.0",
+    "electron-packager": "^15.0.0",
+    "excel4node": "^1.7.2",
     "jquery": "^3.5.1"
   }
 }

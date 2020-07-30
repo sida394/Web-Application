@@ -1,4 +1,4 @@
-const electron = require('electron');
+const { remote } = require('electron')
 const { app, BrowserWindow } = require('electron');
 
 function createWindow () {
@@ -13,6 +13,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadFile('index.html');
+  win.setIcon("icon.ico");
      // Ouvre les DevTools.
   win = null;
  }

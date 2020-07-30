@@ -1,6 +1,6 @@
 async function dialog() {
     var pathcsv = "";
-    const { dialog } = require('electron').remote;
+    const {dialog} = require('electron').remote ;
     await dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
         pathcsv += result.filePaths[0];
 
