@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Form</title>
+    <link rel="icon" href="icon.ico">
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/bootstrap.min.css">
 
@@ -16,6 +17,14 @@
                 <img class="img-fluid mx-auto" id="image_header" src="images/aiesec-logo-white-blue.svg" alt="home-image">
             </header>
             <div id="form p-3">
+                <div id="event">
+                    <div class="row mx-3 mb-2">
+                        <div class="offset-3">
+                            <button class="btn btn-primary mt-1" id="send" type="submit" onclick="newEvent()" name="submit">New event</button>
+                            <button class="btn btn-primary mt-1" type="submit" onclick="exestingEvent()">Open exesting event</button>
+                        </div>
+                    </div>
+                </div>
                 <div id="title">
                     <div>
                         <input class="mx-auto form-control mb-2 w-75" id="new-title" type="text" name="title" placeholder="Enter the title of the offline please" required>
@@ -76,11 +85,12 @@
     <!-- normal script imports etc  -->
     <script src="JS/jquery.min.js"></script>
     <script src="JS/bootstrap.min.js"></script>
+    <script src="JS/script.js"></script>
     <!-- Insert this line after script imports -->
     <script>
         if (window.module) module = window.module;
     </script>
-    <script src="JS/script.js"></script>
+
 </body>
 
 </html>

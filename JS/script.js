@@ -9,6 +9,31 @@ async function dialog() {
     });
     return pathcsv;
 }
+document.querySelector('#title').style.display = "none";
+var exestingEventValue = 1;
+
+function newEvent() {
+    document.querySelector('#event').style.display = "none";
+    document.querySelector('#title').style.display = "block";
+
+}
+
+
+async function exestingEvent() {
+    var pathcsv = "";
+    const { dialog } = require('electron').remote;
+    await dialog.showOpenDialog({ properties: ['openFile'] }).then(result => {
+        pathcsv += result.filePaths[0];
+    }).catch(err => {
+        console.log(err)
+    });
+    document.querySelector('#event').style.display = "none";
+    document.querySelector('#form_input').style.display = "block";
+    return {
+        pathcsv: pathcsv,
+        exestingEventValue: '0'
+    }
+}
 
 var titleP;
 var title;
@@ -71,14 +96,12 @@ function dataForm() {
                         mail: mailValue,
                         phoneNumber: phoneNumberValue
                     }];
-                    entries.push(
-                        {
-                            name: nameValue,
-                            lastName: lastNameValue,
-                            mail: mailValue,
-                            phoneNumber: phoneNumberValue
-                        }
-                    )
+                    entries.push({
+                        name: nameValue,
+                        lastName: lastNameValue,
+                        mail: mailValue,
+                        phoneNumber: phoneNumberValue
+                    })
                     console.log(entries);
                     return data;
                 }
@@ -92,18 +115,20 @@ function dataForm() {
 
 
 
-async function csv(title, data) {
-    const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-    const csvWriter = createCsvWriter({
-        path: title + '.csv',
-        append: true,
-        header: [
-            { id: 'name', title: 'Name' },
-            { id: 'lastName', title: 'Last Name' },
-            { id: 'mail', title: 'Mail' },
-            { id: 'phoneNumber', title: 'Phone Number' }
-        ]
-    });
+async function csv(exestingEventValue, title, data) {
+    if (exestingEventValue) {
+        const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+        const csvWriter = createCsvWriter({
+            path: title + '.csv',
+            append: true,
+            header: [
+                { id: 'name', title: 'Name' },
+                { id: 'lastName', title: 'Last Name' },
+                { id: 'mail', title: 'Mail' },
+                { id: 'phoneNumber', title: 'Phone Number' }
+            ]
+        });
+    }
     let writed = false;
     await csvWriter.writeRecords(data).then(() => {
         writed = true;
@@ -156,12 +181,12 @@ function toExcel() {
     ws.cell(1, 4).string('Phone number');
 
 
-    for (let currentLine = 2; currentLine-2 < entries.length; currentLine++) {
+    for (let currentLine = 2; currentLine - 2 < entries.length; currentLine++) {
         console.log(entries);
-        ws.cell(currentLine, 1).string(entries[currentLine-2].name);
-        ws.cell(currentLine, 2).string(entries[currentLine-2].lastName);
-        ws.cell(currentLine, 3).string(entries[currentLine-2].mail);
-        ws.cell(currentLine, 4).string(entries[currentLine-2].phoneNumber);
+        ws.cell(currentLine, 1).string(entries[currentLine - 2].name);
+        ws.cell(currentLine, 2).string(entries[currentLine - 2].lastName);
+        ws.cell(currentLine, 3).string(entries[currentLine - 2].mail);
+        ws.cell(currentLine, 4).string(entries[currentLine - 2].phoneNumber);
     }
     wb.write(titleP + '.xlsx');
 }
