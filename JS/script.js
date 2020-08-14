@@ -11,10 +11,7 @@ async function dialog() {
 }
 document.querySelector('#title').style.display = "none";
 var exestingEventValue = true;
-<<<<<<< HEAD
 var i;
-=======
->>>>>>> 49b09b328ded79fed00105a6e5530560c2519156
 
 function newEvent() {
     document.querySelector('#event').style.display = "none";
@@ -57,10 +54,7 @@ async function newTitle() {
         title.style.display = "none";
         document.querySelector('#sendTitle').style.display = "none";
         document.querySelector('#form_input').style.display = "block";
-<<<<<<< HEAD
         return title;
-=======
->>>>>>> 49b09b328ded79fed00105a6e5530560c2519156
     }
     exestingEventValue = false
     return title;
@@ -107,10 +101,7 @@ async function csv(exestingEventValue, title, data) {
             { id: 'phoneNumber', title: 'Phone Number' }
         ]
     });
-<<<<<<< HEAD
-=======
     window.exestingEventValue = true
->>>>>>> 49b09b328ded79fed00105a6e5530560c2519156
     let writed = false;
     await csvWriter.writeRecords(data).then(() => {
         writed = true;
