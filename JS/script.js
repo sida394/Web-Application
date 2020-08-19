@@ -1,3 +1,5 @@
+const { data } = require('jquery');
+
 async function dialog() {
     var pathcsv = "";
     const { dialog } = require('electron').remote;
@@ -40,6 +42,13 @@ async function exestingEvent() {
 var titleP;
 var title;
 document.querySelector('#form_input').style.display = "none";
+var titleSend = document.querySelector('#new-title');
+titleSend.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("sendTitle").click();
+    }
+});
 
 async function newTitle() {
     title = document.querySelector('#new-title');
@@ -60,6 +69,14 @@ async function newTitle() {
     return title;
 }
 
+
+var formSend = document.querySelector('#phoneNumber');
+formSend.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("sendForm").click();
+    }
+});
 
 function dataForm() {
 
@@ -110,14 +127,35 @@ async function csv(exestingEventValue, title, data) {
 }
 
 
-
+$('#badInfos').css('display', 'none');
+$('#goodInfos').css('display', 'none');
 
 function myFunctions(t) {
 
+
     $('#badInfos').css('display', 'none');
-    datas = dataForm();
+    datas = dataForm()
+
+    // mail condition
+    var i;
+    var mailCondition = 1;
+    for (i = 0; i < datas[0].mail.length; i++) {
+        if (datas[0].mail[i] === '@') mailCondition--;
+    }
+
     if (datas === 0) {
         $('#badInfos').html('<h3>Empty filed</h3>');
+        $('#badInfos').css('display', 'block');
+        $('#myModal').modal('show');
+    } else if (datas[0].phoneNumber[0] != 0 || datas[0].phoneNumber.length != 10) {
+
+        $('#badInfos').html('<h3>Your phone number is wrong</h3>');
+        $('#badInfos').css('display', 'block');
+        $('#myModal').modal('show');
+
+    } else if (mailCondition) {
+
+        $('#badInfos').html('<h3>Your mail is wrong</h3>');
         $('#badInfos').css('display', 'block');
         $('#myModal').modal('show');
     } else {
@@ -139,8 +177,6 @@ function myFunctions(t) {
     document.querySelector('#phoneNumber').value = "";
 }
 
-$('#badInfos').css('display', 'none');
-$('#goodInfos').css('display', 'none');
 
 function toExcel() {
     const convertCsvToXlsx = require('@aternus/csv-to-xlsx');
@@ -162,4 +198,3 @@ function toExcel() {
 
     // 
 }
-s
