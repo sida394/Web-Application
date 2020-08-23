@@ -136,40 +136,48 @@ function myFunctions(t) {
     $('#badInfos').css('display', 'none');
     datas = dataForm()
 
-    // mail condition
-    var i;
-    var mailCondition = 1;
-    for (i = 0; i < datas[0].mail.length; i++) {
-        if (datas[0].mail[i] === '@') mailCondition--;
-    }
-
     if (datas === 0) {
         $('#badInfos').html('<h3>Empty filed</h3>');
         $('#badInfos').css('display', 'block');
         $('#myModal').modal('show');
-    } else if (datas[0].phoneNumber[0] != 0 || datas[0].phoneNumber.length != 10) {
-
-        $('#badInfos').html('<h3>Your phone number is wrong</h3>');
-        $('#badInfos').css('display', 'block');
-        $('#myModal').modal('show');
-
-    } else if (mailCondition) {
-
-        $('#badInfos').html('<h3>Your mail is wrong</h3>');
-        $('#badInfos').css('display', 'block');
-        $('#myModal').modal('show');
     } else {
+
         $('#badInfos').css('display', 'none');
         $('#goodInfos').css('display', 'none');
-        csv(exestingEventValue, titleP, datas).then(() => {
-            $('#goodInfos').html('<h3>save successfully</h3>');
-            $('#goodInfos').css('display', 'block');
-            $('#myModal').modal('show');
-        }).catch(() => {
-            $('#badInfos').html('<h3>Save failed</h3>');
+
+        // mail condition
+        var i;
+        var mailCondition = 1;
+        for (i = 0; i < datas[0].mail.length; i++) {
+            if (datas[0].mail[i] === '@')
+                mailCondition--;
+        }
+
+
+        if (datas[0].phoneNumber[0] != 0 || datas[0].phoneNumber.length != 10) {
+
+            $('#badInfos').html('<h3>Your phone number is wrong</h3>');
             $('#badInfos').css('display', 'block');
             $('#myModal').modal('show');
-        });
+
+        } else if (mailCondition) {
+
+            $('#badInfos').html('<h3>Your mail is wrong</h3>');
+            $('#badInfos').css('display', 'block');
+            $('#myModal').modal('show');
+        } else {
+            $('#badInfos').css('display', 'none');
+            $('#goodInfos').css('display', 'none');
+            csv(exestingEventValue, titleP, datas).then(() => {
+                $('#goodInfos').html('<h3>save successfully</h3>');
+                $('#goodInfos').css('display', 'block');
+                $('#myModal').modal('show');
+            }).catch(() => {
+                $('#badInfos').html('<h3>Save failed</h3>');
+                $('#badInfos').css('display', 'block');
+                $('#myModal').modal('show');
+            });
+        }
     }
     document.querySelector('#name').value = "";
     document.querySelector('#lastName').value = "";
@@ -196,5 +204,5 @@ function toExcel() {
         $('#myModal').modal('show');
     }
 
-    // 
+
 }
