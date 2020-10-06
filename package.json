@@ -7,7 +7,7 @@
     "build": "electron-packager . form --overwrite --out=dist --asar=true --icon=icon.ico --prune=true "
   },
   "devDependencies": {
-    "electron": "^9.1.2",
+    "electron": "^9.3.1",
     "electron-packager": "^15.0.0",
     "excel4node": "^1.7.2"
   },
